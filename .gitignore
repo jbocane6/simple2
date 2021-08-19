@@ -1,52 +1,35 @@
-# Prerequisites
-*.d
+#ignore all files in each directory
+*/*
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+#unignore .c files in each directory
+!*/*.c
 
-# Linker output
-*.ilk
-*.map
-*.exp
+#unignore .h header files in each directory
+!*/*.h
 
-# Precompiled Headers
-*.gch
-*.pch
+#unignore .o files in each directory
+!*/*.o
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+#unignore .a files in each directory
+!*/*.a
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+#unignore .md files in each directory
+!*/*.md
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+#unignore .sh files in each directory
+!*/*.sh
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+#unignore .gitignore
+!.gitignore
+
+#ignore compiled files
+*-main.c
+*main.c
+
+#ignore backup files
+*.*~
+
+#ignore clion files
+.idea
+CMakeLists.txt
