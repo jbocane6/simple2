@@ -1,38 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "holberton.h"
 
 extern char **environ;
 
-
-char *getVariableForEnviron(char *variableName)
+char *get_environ(char *pathName)
 {
-    int i = 0, j = 0;
-    char *result;
-
+    int i, j;
     for (i = 0; environ[i]; i++)
     {
-        for (j = 0; environ[i][j] == variableName[j]; j++)
+        for (j = 0; pathName[j]; j++)
         {
+            if (environ[i][j] != pathName[j])
+                break;
         }
-        if (variableName[j] == '\0' && environ[i][j] == '=')
-        {
-        return (&environ[i][j + 1]);
-        }
+        if (pathName[j] == '\0' && environ[i][j] == '=')
+            return (&environ[i][j +1]);
     }
-
- return NULL;
-}
-
-/**
- * main - main function
- * @argc: Amount of arguments received
- * @argv: Pointer to an array to char received 
- * Return: 0
-*/
-
-int main(void)
-{
-    char *pathValue = getVariableForEnviron("PATH");
-    printf("%s\n",pathValue);
-    return (0);
+    return (NULL);
 }
