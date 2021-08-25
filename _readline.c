@@ -1,67 +1,41 @@
 #include "holberton.h"
 
+/**
+ * ctrap - Rewrite prompt when ctrl + c is used
+ * @sig: int to indicate next data
+ * Return: void
+ */
 void ctrap(int sig)
 {
-	write(1, "\n", sig - 1);
-	write(1, "$ ", 2);
+	if (isatty(in))
+		write(out, "\n$ ", sig + 2);
 }
 
-char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size)
-{
-	char *newSizeMemory = NULL;
-	unsigned int i = 0;
+/**
+ * readline - read and check characters of string to assign
+ * dynamic memory
+ * @strReceived: double pointer type char that contents the strings
+ * Return: return string variable or NULL if it fails
+ */
 
-	if (old_size == new_size)
-		return (ptr);
-	if (ptr == NULL)
-	{
-		ptr = malloc(new_size);
-		return (ptr);
-	}
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	newSizeMemory = malloc(new_size);
-	if (newSizeMemory == NULL)
-	{
-		free(ptr);
-		free(newSizeMemory);
-		return (NULL);
-	}
-	for (i = 0; i < old_size; i++)
-		newSizeMemory[i] = ptr[i];
-	free(ptr);
-	return (newSizeMemory);
-}
-
-int readline(char **lineptr, int *lineptrSize)
+char *readline(char *strReceived)
 {
 	(void)signal(SIGINT, ctrap);
-	int i = 0, valRead = 0;
-	char character = 0;
 
-	write(1, "$ ", 2);
-	*lineptr = malloc(sizeof(char) * *lineptrSize);
-	if (!lineptr)
-		return (-1);
-	while (character != '\n')
+	strReceived = malloc(sizeof(char) * 1024);
+	strReceived[0] = '\0';
+
+	if (isatty(in))
+		write(out, "$ ", 2);
+
+	scanf("%[^'\n']s", strReceived);
+  	while ((getchar()) != '\n');
+
+	if (strReceived[0] == '\0')
 	{
-		valRead = read(STDIN_FILENO, &character, 1);
-		if (valRead <= 0)
-		{
-			free(*lineptr);
-			return (-1);
-		}
-		(*lineptr)[i] = character;
-		i++;
-		if (i >= *lineptrSize)
-		{
-			*lineptr = _realloc(*lineptr, *lineptrSize, *lineptrSize << 1);
-			*lineptrSize = *lineptrSize << 1;
-		}
+		free(strReceived);
+		return (NULL);
 	}
-	(*lineptr)[i - 1] = '\0';
-	return (i - 1);
+
+	return (strReceived); 
 }

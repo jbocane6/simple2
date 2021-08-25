@@ -26,6 +26,11 @@ char *_strcat(char *dest, char *src)
 	return (concat);
 }
 
+/**
+ * *concatPlusPlus - combine received path with the command to use
+ * @nVariables: int variable amount of paremeters received
+ * Return: return new string or NULL if fails
+ */
 char *concatPlusPlus(int nVariables, ...)
 {
 	int i = 0;
@@ -48,14 +53,20 @@ char *concatPlusPlus(int nVariables, ...)
 	return (string);
 }
 
+/**
+ * *combine - complete the process of concat path with command and free
+ * memory used for this process
+ * @command: pointer to char variable that contains the command
+ * @splitPath: double pointer to string of paths
+ * Return: return command received or complete path
+ */
 char *combine(char *command, char **splitPath)
 {
-	int i = 0, j = 0, k = 0, sizeCommand, sizeSplitPath;
-	int sizeTotal, flag = 0, flag2 = 0;
+	int i = 0;
 	struct stat st;
 	char *commandCombine;
 
-	while (splitPath[i])
+	while (i < _strstrlen(splitPath) - 1)
 	{
 		commandCombine = concatPlusPlus(3, splitPath[i], "/", command);
 		if (!commandCombine)

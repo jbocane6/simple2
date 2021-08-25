@@ -1,0 +1,48 @@
+.TH mainSHell()  "1.0"  "shell man page"
+
+.SH SIMPLE_SHELL
+mainSHell - a simple interpreter line command sh
+
+.SH SYNOPSIS
+
+Command [options] [file]
+
+.SH DESCRIPTION
+mainSHell - is the standart command interpreter that is invoked for the 
+system, this version is 1.0.
+
+.B Overview
+the shell is a command interpreter that execute commands read from the line
+ of string, standart input or specified file, the program ensure that the
+ command is executed in the correct path.
+
+.SH Usage
+below, can find some built-in options.
+
+     ls - [list] list files ordered.
+.br 
+     pwd - [Print working directory] print the path of the working directory
+.br 
+.B Built-in
+
+     cd - [change directory] allows moving between directories.
+.br 
+     env - [environ] display environment variables.
+.br
+     exit - [exit] The exit command exits the current shell. 0 status value
+      for successful execution.
+.br   
+
+.SH EXAMPLES
+
+.B   ls -la 
+
+.br 
+     list all files in de corrent directory and display in a long format
+      hiden files
+
+.SH BUGS
+unknow BUGS
+
+.SH AUTHOR
+Juan Bocanegra, Andres Castañeda, Juan Latorre

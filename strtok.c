@@ -1,5 +1,12 @@
 #include "holberton.h"
 
+/**
+ * include_char - search for position of character that
+ * contains delimiter
+ * @str: pointer to a char variable
+ * @character: char variable that contains delimiter
+ * Return: 0 if is NULL or 1 if found character
+ */
 int include_char(char *str, char character)
 {
 	if (!str || !*str)
@@ -9,6 +16,12 @@ int include_char(char *str, char character)
 	return (include_char(str + 1, character));
 }
 
+/**
+ * count_until - count characters until delimiter
+ * @strUntil: pointer to a char variable that contains delimiter
+ * @str: pointer to char variable that count characters
+ * Return: return amount of characters or 0 if fails
+ */
 int count_until(char *strUntil, char *str)
 {
 	if (!strUntil || !*strUntil || !str || !*str)
@@ -18,6 +31,13 @@ int count_until(char *strUntil, char *str)
 	return (0);
 }
 
+/**
+ * cp_until - create and array with characters that exist before
+ * delimiter
+ * @strUntil: pointer to a char variable that contains delimiter
+ * @strToCopy: pointer to char variable that count characters
+ * Return: return new string or NULL if fails
+ */
 char *cp_until(char *strUntil, char *strToCopy)
 {
 	int count = count_until(strUntil, strToCopy), i = 0;
@@ -32,6 +52,12 @@ char *cp_until(char *strUntil, char *strToCopy)
 	return (newStr);
 }
 
+/**
+ * count_words - count amount of words are separeted by the deilimiters
+ * @strDelim: pointer to a char variable that contains delimiter
+ * @str: pointer to char variable that count characters
+ * Return: return amount of words or 0 if fails
+ */
 int count_words(char *strDelim, char *str)
 {
 	if (!str || !*str || !strDelim || !*strDelim)
@@ -45,6 +71,12 @@ int count_words(char *strDelim, char *str)
 	return (count_words(strDelim, str + 1));
 }
 
+/**
+ * **_strtok - create an array of strings tokenized
+ * @str: pointer to char variable that count characters
+ * @delim: pointer to a char variable that contains delimiter
+ * Return: return array of strings or 0 if fails
+ */
 char **_strtok(char *str, char *delim)
 {
 	char **arrayWords = NULL;
